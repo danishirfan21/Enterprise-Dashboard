@@ -1,6 +1,7 @@
 # Enterprise Dashboard / Admin Panel (EHS-style)
 
-A compact Next.js 14 (App Router) demo showing complex, data-driven UI patterns common in EHS software:
+A compact Next.js 14 (App Router) demo showing common EHS-style admin UI patterns:
+
 - Responsive layout with cards and charts
 - Data tables with filtering, sorting and pagination
 - JWT authentication with httpOnly cookies
@@ -9,35 +10,39 @@ A compact Next.js 14 (App Router) demo showing complex, data-driven UI patterns 
 
 ## Quick start
 
-```bash
-# 1) Install deps
+1. Copy the example env and install dependencies:
+
+```powershell
+cp .env.example .env.local # or create .env.local and paste values
 npm install
+```
 
-# 2) Run the dev server
+2. Run the dev server:
+
+```powershell
 npm run dev
+```
 
-# 3) Open
-http://localhost:3000
-Test users
+3. Open http://localhost:3000
 
-admin@acme.com / admin123 → role: admin
+Test users (built-in demo fixtures):
 
-user@acme.com / user123 → role: user
+- admin@acme.com / admin123 → role: admin
+- user@acme.com / user123 → role: user
 
-Add .env.local:
+Required env vars (copy to `.env.local`):
 
-ini
-Copy code
+```
 AUTH_SECRET=change_me_to_a_long_random_string
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
-Structure
-app/ — App Router pages and API route handlers
+```
 
-lib/auth.ts — JWT helpers using jose
+Project structure (high level):
 
-middleware.ts — route protection + RBAC gate for /admin/*
-
-components/ — Sidebar, KPI cards, chart wrapper and DataTable
+- `app/` — App Router pages and API route handlers
+- `lib/auth.ts` — JWT helpers using `jose`
+- `middleware.ts` — route protection + RBAC gate for `/admin/*`
+- `components/` — Sidebar, KPI cards, chart wrapper and DataTable
 
 app/api/* — Mock REST endpoints: login, logout, metrics, incidents, users
 
